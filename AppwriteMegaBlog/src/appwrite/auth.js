@@ -1,4 +1,4 @@
-import conf from "../conf.js"
+import conf from "../conf/conf.js"
 import {Client, Account, ID} from "appwrite"
 
 //class isliye banaya kyuki bad mai iske andar ke methods use kar sake objects bana ke!
