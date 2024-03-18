@@ -18,6 +18,7 @@ export default function PostForm({ post }) {
 
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+  console.log("Form submit action triggered");
 
   const submit = async (data) => {
     if (post) {
@@ -61,7 +62,6 @@ export default function PostForm({ post }) {
       }
     }
   };
-
 
   const slugTransform = useCallback((value) => {
     if (value && typeof value === "string")
