@@ -5,29 +5,36 @@ import { Button, Input, Logo } from "./index";
 import { useDispatch } from "react-redux";
 import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import FadeLoader from "react-spinners/FadeLoader";
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const login = async (data) => {
     setError("");
     try {
+      setLoading(true);
       const session = await authService.login(data);
       if (session) {
         const userData = await authService.getCurrentUser();
         if (userData) dispatch(authLogin(userData));
         navigate("/");
+        toast.success("Succesfully Logged in!");
       }
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full my-5">
       <div
         className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
       >
@@ -73,7 +80,17 @@ function Login() {
               })}
             />
             <Button type="submit" className="w-full">
-              Sign in
+              {loading ? (
+                <FadeLoader
+                  color={"white"}
+                  loading={loading}
+                  size={2}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "Log in"
+              )}
             </Button>
           </div>
         </form>

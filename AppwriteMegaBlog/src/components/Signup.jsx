@@ -5,24 +5,31 @@ import { login } from "../store/authSlice";
 import { Button, Input, Logo } from "./index.js";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import FadeLoader from "react-spinners/FadeLoader.js";
 
 function Signup() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
+  const [loading, setLoading] = useState(false);
 
   const create = async (data) => {
     setError("");
     try {
+      setLoading(true);
       const userData = await authService.createAccount(data);
       if (userData) {
         const userData = await authService.getCurrentUser();
         if (userData) dispatch(login(userData));
         navigate("/");
+        toast.success("Successfully signed up!");
       }
     } catch (error) {
       setError(error.message);
+    } finally{
+      setLoading(false);
     }
   };
 
@@ -81,7 +88,17 @@ function Signup() {
               })}
             />
             <Button type="submit" className="w-full">
-              Create Account
+              {loading ? (
+                <FadeLoader
+                  color={"white"}
+                  loading={loading}
+                  size={2}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "Create Account"
+              )}
             </Button>
           </div>
         </form>
