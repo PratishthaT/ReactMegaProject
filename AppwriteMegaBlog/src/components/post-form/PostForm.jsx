@@ -68,7 +68,7 @@ export default function PostForm({ post }) {
       toast.success("Posted Succesfully!");
       navigate(`/all-posts`);
     } catch (error) {
-      toast.error("Error ", error.message," Please try uploading again");
+      toast.error("Error ", error.message, " Please try uploading again");
     } finally {
       setLoading(false);
     }
@@ -100,7 +100,7 @@ export default function PostForm({ post }) {
       <div className="w-2/3 px-2">
         <Input
           label="Title :"
-          placeholder="Title"
+          placeholder="Title (atmost 20 characters in length)"
           className="mb-4"
           {...register("title", { required: true })}
         />

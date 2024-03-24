@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
+  const userData = useSelector((state) => state.auth.userData);
 
   const navItems = [
     {
@@ -43,6 +44,16 @@ function Header() {
             <Link to="/">
               <Logo />
             </Link>
+          </div>
+          <div className="flex items-center">
+            <h1>
+              Welcome{" "}
+              <b>
+                <u>
+                  <i>{userData.name}</i>
+                </u>
+              </b>
+            </h1>
           </div>
           <ul className="flex ml-auto ">
             {navItems.map((item) =>
