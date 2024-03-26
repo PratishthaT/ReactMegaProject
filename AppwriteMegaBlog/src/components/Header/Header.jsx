@@ -50,7 +50,7 @@ function Header() {
               Welcome{" "}
               <b>
                 <u>
-                  <i>{userData.name}</i>
+                  <i>{userData?.name}</i>
                 </u>
               </b>
             </h1>
