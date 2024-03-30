@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import authService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
 import { Footer, Header } from "./components";
 import { Outlet } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -20,6 +20,9 @@ function App() {
         } else {
           dispatch(logout());
         }
+      })
+      .catch((error) => {
+        toast.error("Error loading user data");
       })
       .finally(() => setLoading(false));
   }, []);
