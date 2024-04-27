@@ -39,11 +39,11 @@ function Home() {
           <div className="container mx-auto px-6 flex relative py-16">
             <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20">
               <span className="w-20 h-2 bg-gray-800 dark:bg-white mb-12"></span>
-              <h1 className="font-bebas-neue uppercase text-6xl sm:text-8xl sm:font-black flex flex-col leading-none dark:text-white text-gray-800">
+              <h1 className="font-bebas-neue uppercase text-6xl sm:text-8xl sm:font-black flex flex-col leading-none text-gray-800">
                 Express Your
                 <span className="text-5xl sm:text-7xl mb-3">IDEAS</span>
               </h1>
-              <p className="text-sm sm:text-base text-gray-700 dark:text-white">
+              <p className="text-sm sm:text-base text-gray-700 ">
                 Welcome to KnowledgeExpress, a vibrant digital space where ideas
                 come to life and conversations thrive. Dive into a world of
                 insightful articles, inspiring stories curated just for you.
